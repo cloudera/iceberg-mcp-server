@@ -8,7 +8,8 @@
 ## OF ANY KIND, either express or implied. Refer to the License for the specific
 ## permissions and limitations governing your use of the file.
 
-from mcp.server.fastmcp import FastMCP
+import os
+from fastmcp import FastMCP
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -36,9 +37,9 @@ def get_schema() -> str:
 
 
 def main():
-    print("Starting Iceberg MCP Server via Impala")
-    mcp.run(transport="stdio")
-
+    transport = os.getenv("MCP_TRANSPORT", "stdio")
+    print(f"Starting Iceberg MCP Server via transport: {transport}")
+    mcp.serve(transport=transport)
 
 if __name__ == "__main__":
     main()
