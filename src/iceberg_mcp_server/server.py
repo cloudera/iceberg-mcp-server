@@ -39,7 +39,7 @@ def get_schema() -> str:
 def main():
     transport = os.getenv("MCP_TRANSPORT", "stdio")
     print(f"Starting Iceberg MCP Server via transport: {transport}")
-    mcp.serve(transport=transport)
+    mcp.run(transport=transport)
 
 if __name__ == "__main__":
     main()
